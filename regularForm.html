@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgba(128, 128, 128, 0.787);
+        }
+        h2{
+            text-align: center;
+            font-family: sans-serif;
+            font-size: 25px;
+            line-height:0px;
+            margin: 40px;
+
+        }
+        p{
+            font-family: sans-serif;
+            color:rgba(235, 228, 228, 0.746);
+            margin-left: 80px;
+            font-size: 15px;
+        }
+        form{
+            width: 600px;
+            position: absolute;
+            background-color: rgba(47, 46, 46, 0.657);
+            border: 1px solid rgba(128, 128, 128, 0.527);
+            border-radius: 10px;
+            top:50px;
+            left: 30%;
+            margin-top: 40px;
+        }
+        input{
+            width: 400px;
+            height: 45px;
+            margin-left: 80px;
+            border: 2px solid rgba(144, 140, 140, 0.835);
+            border-radius: 10px;
+            box-sizing: border-box;
+            font-size: 25px;
+            text-align: center;
+            outline: none ;
+        }
+        input.valid{
+            border-color: #36cc36;
+        }
+        input.invalid{
+            border-color: #cc3636;
+        }
+    </style>
+</head>
+<body>
+    
+    <h2>Enter your personnal informations </h2>
+    
+    <form>
+        <p></p>
+        <input type="text" name="username" placeholder="UserName">
+        <p>the name must be at list 3 caracters</p>
+        <input type="email" name="email" placeholder="Email">
+        <p>the email must have @ and dot(.) </p>
+        <input type="password" name="password" placeholder="Password">
+        <p>password must be caracters or/and numbers (betwen 8 and 16)</p>
+        <input type="tel" name="phone" placeholder="Phone">
+        <p>the phone must start with 06 or 07 ( 10 number )</p>
+        <input type="reset" name="delete" value="Delete" style="background-color: rgba(20, 112, 108, 0.774);"><br><br>
+        <input type="submit"  value="Sing in" style="background-color: rgba(20, 112, 108, 0.774);" >
+        <p></p>
+    </form>
+
+    <script>
+
+        const inputs =document.querySelectorAll("input");
+
+        const patterns ={
+            phone:/^(06|07)[0-9]{8}$/,
+            username:/^[a-z\d ]{2,}$/i,
+            password:/^[a-z\d]{8,}$/g,
+            email:/^[a-z\d]{2,}@[a-z]{1,}\.[a-z]{3,3}$/g,
+        };
+        function valide(field,regex)
+        {
+            if(regex.test(field.value)){
+                field.className='valid';
+            }else
+            field.className='invalid';
+        }
+
+        inputs.forEach((input) => {
+            input.addEventListener('keyup',(e) => {
+                valide(e.target,patterns[e.target.attributes.name.value])
+            });
+        });
+       
+    </script>
+</body>
+</html>
